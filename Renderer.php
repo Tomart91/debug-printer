@@ -1,6 +1,6 @@
 <?php
 
-namespace BacktracePrinter;
+namespace DebugPrinter;
 
 class Renderer {
 	static $dir = __DIR__;
