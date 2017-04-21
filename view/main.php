@@ -67,13 +67,17 @@
 		<?php } ?>
 	</ul>
 </div>
-<script src="/libraries/jquery/jquery-2.2.3.min.js" type="text/javascript"></script>
 <script>
 	jQuery(document).ready(function () {
-		$('.element').click(function(e){
+		$('.element').off('click');
+		$('.element').on('click', function(e){
 			var currentTarget = $(e.currentTarget);
 			var phpCode = currentTarget.next();
-			phpCode.toggleClass('hide');
+			if(phpCode.hasClass('hide'))  {
+				phpCode.removeClass('hide');
+			} else {
+				phpCode.addClass('hide');
+			}
 		})
 	});
 </script>

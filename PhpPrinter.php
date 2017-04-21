@@ -9,7 +9,7 @@ class PhpPrinter {
 	public $line = 0;
 	public $content = '';
 	public static $phpAtributes = ['catch', 'public', 'try', 'if', 'else', 'switch', 'case', 
-		'static', 'return', 'exit', 'class', 'namespace', 'function', 'new', 'self', 'isset', 'false', 'true', 'empty', 'for', 'foreach'];
+		'static', 'return', 'exit', 'class', 'namespace', 'function', 'new', 'self', 'isset', 'false', 'true', 'empty', 'for', 'foreach', 'instanceof'];
 	public static function getInstance($file) {
 		$instance = new self();
 		$instance->file = $file;
@@ -23,7 +23,7 @@ class PhpPrinter {
 
 	public function getLine($line) {
 		$code = $this->content;
-		$code = explode(PHP_EOL, $code);
+		$code = explode("\n", $code);
 		if (!isset($code[$line]))
 			return false;
 		return [

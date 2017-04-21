@@ -31,6 +31,12 @@ class CallStack {
 	public function getLineDescription() {
 		$description = '';
 		if (isset($this->trace['class'])) {
+			if($this->trace['type'] == 'dynamic') {
+				$this->trace['type'] = '->';
+			}
+			if($this->trace['type'] == 'static') {
+				$this->trace['type'] = '::';
+			}
 			$description = $this->trace['class'] . $this->trace['type'] . $this->trace['function'];
 			$description .= '(';
 			if (!empty($this->trace['args'])) {
@@ -50,6 +56,7 @@ class CallStack {
 	}
 
 	public function getPhpCode() {
+		
 		$phpPrinter = PhpPrinter::getInstance($this->getFileName());
 		$phpPrinter->setLine($this->getLine());
 		return $phpPrinter->getCode();
